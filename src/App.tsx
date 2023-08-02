@@ -6,6 +6,7 @@ function App() {
     const result = getCurrentWeather(21.02851121, 105.804817);
     console.log(result);
   }, []);
+
   return (
     <div>
       <p></p>
