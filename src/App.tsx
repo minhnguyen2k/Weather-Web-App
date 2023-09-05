@@ -1,15 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getCurrentWeather } from './utils/api';
+import Sidebar from './components/Sidebar';
+import MainSection from './components/MainSection';
+import { ICurrentWeather } from './model/weather';
 
 function App() {
+  const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>();
   useEffect(() => {
-    const result = getCurrentWeather(21.02851121, 105.804817);
-    console.log(result);
+    (async () => {
+      const result = await getCurrentWeather(21.028511, 105.804817);
+      setCurrentWeather(result);
+    })();
   }, []);
 
   return (
-    <div>
-      <p></p>
+    <div className="container">
+      <Sidebar currentWeather={currentWeather} />
+      <MainSection />
     </div>
   );
 }
