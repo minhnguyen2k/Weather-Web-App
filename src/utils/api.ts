@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ICurrentWeather } from '../model/weather';
+import { ICurrentWeather, IWeatherForecast } from '../model/weather';
 
 export const getCurrentWeather = async (
   lat: number,
@@ -19,7 +19,7 @@ export const getWeatherForecast = async (
   lat: number,
   lon: number,
   days: number,
-) => {
+): Promise<IWeatherForecast> => {
   return (
     await axios.get('http://api.weatherapi.com/v1/forecast.json', {
       params: {

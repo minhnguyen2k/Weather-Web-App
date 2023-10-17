@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import '../styles/sidebar.scss';
-import { ICurrentWeather } from '../model/weather';
-import { days, weatherAsset } from '../utils/constants';
 import { Player } from '@lottiefiles/react-lottie-player';
+import { ICurrentWeather } from '../../model/weather';
+import { days, weatherAsset } from '../../utils/constants';
+import '../../styles/sidebar.scss';
 
 interface Props {
   currentWeather?: ICurrentWeather;
@@ -54,10 +54,13 @@ const Sidebar: FC<Props> = ({ currentWeather }) => {
       <div className="sidebar__weather-state">
         <img
           className="sidebar__weather-state__icon"
-          src={`/weather/day/${
-            getCurrentWeatherCondition(currentWeather?.current.condition.code)
-              ?.icon
-          }.png`}
+          src={
+            currentWeather &&
+            `/weather/day/${
+              getCurrentWeatherCondition(currentWeather?.current.condition.code)
+                ?.icon
+            }.png`
+          }
         />
         <div className="sidebar__weather-state__description">
           <p>{currentWeather?.current.condition.text}</p>

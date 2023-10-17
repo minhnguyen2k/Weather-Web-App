@@ -1,0 +1,24 @@
+.uv-card {
+  position: relative;
+  &__progress {
+    transform-origin: 50% 100%;
+    animation: rotate 1s linear;
+    transform: rotate(var(--rotation));
+
+    @keyframes rotate {
+      from {
+        transform: rotate(-180deg);
+      }
+
+      to {
+        transform: rotate(var(--rotation));
+      }
+    }
+  }
+  &__counter {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
