@@ -4,9 +4,20 @@ import Sidebar from './components/Sidebar/Sidebar';
 import MainSection from './components/MainSection/MainSection';
 import { ICurrentWeather, IWeatherForecast } from './model/weather';
 
+export type TemperatureUnitType = 'celsius' | 'fahrenheit' | '';
+
 function App() {
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>();
   const [weatherForecast, setWeatherForecast] = useState<IWeatherForecast>();
+  const [temperatureUnit, setTemperatureUnit] =
+    useState<TemperatureUnitType>('');
+
+  const handleChangeTemperatureUnit = (
+    temperatureUnit: TemperatureUnitType,
+  ) => {
+    setTemperatureUnit(temperatureUnit);
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -25,8 +36,15 @@ function App() {
 
   return (
     <div className="container">
-      <Sidebar currentWeather={currentWeather} />
-      <MainSection weatherForecast={weatherForecast} />
+      <Sidebar
+        currentWeather={currentWeather}
+        temperatureUnit={temperatureUnit}
+      />
+      <MainSection
+        weatherForecast={weatherForecast}
+        onChangeTemperatureUnit={handleChangeTemperatureUnit}
+        temperatureUnit={temperatureUnit}
+      />
     </div>
   );
 }

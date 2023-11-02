@@ -1,5 +1,5 @@
 import DailyWeatherDetailCard from '..';
-import Counter from '../../../Counter';
+import Counter from '../../../../Counter';
 import './style.scss';
 interface Props {
   uvIndex: number;

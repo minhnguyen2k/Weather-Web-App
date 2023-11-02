@@ -1,0 +1,13 @@
+.twilight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  &__image {
+    width: 50px;
+  }
+  &__time {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -5,8 +5,6 @@ interface Props {
   children: React.ReactNode;
 }
 const DailyWeatherDetailCard = ({ title, children }: Props) => {
-  console.log(title);
-
   return (
     <div className="daily-card">
       <p>{title}</p>

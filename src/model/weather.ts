@@ -99,26 +99,27 @@ export interface IWeatherForecastDay {
   totalsnow_cm: number;
   uv: number;
 }
+export interface IWeatherForecastWeekly {
+  astro: {
+    is_moon_up: number;
+    is_sun_up: number;
+    moon_illumination: string;
+    moon_phase: string;
+    moonrise: string;
+    moonset: string;
+    sunrise: string;
+    sunset: string;
+  };
+  date: string;
+  date_epoch: number;
+  day: IWeatherForecastDay;
+  hour: IWeatherForecastHour[];
+}
 
 export interface IWeatherForecast {
-  current: ICurrentWeather;
+  current: ICurrentWeather['current'];
   forecast: {
-    forecastday: {
-      astro: {
-        is_moon_up: number;
-        is_sun_up: number;
-        moon_illumination: string;
-        moon_phase: string;
-        moonrise: string;
-        moonset: string;
-        sunrise: string;
-        sunset: string;
-      };
-      date: string;
-      date_epoch: number;
-      day: IWeatherForecastDay;
-      hour: IWeatherForecastHour[];
-    }[];
+    forecastday: IWeatherForecastWeekly[];
   };
   location: ILocation;
 }

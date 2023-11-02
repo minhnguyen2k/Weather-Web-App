@@ -1,3 +1,12 @@
+@mixin animate($animation, $duration, $method, $times) {
+  animation: $animation $duration $method $times;
+}
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,4 +19,21 @@
 
 .container {
   display: flex;
+}
+.animation-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.animation-common {
+  @include keyframes(slide) {
+    0% {
+      transform: translateY(50%);
+    }
+  }
+  @include animate(slide, 0.3s, linear, 1);
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
 }

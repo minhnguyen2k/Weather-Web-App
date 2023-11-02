@@ -3,12 +3,14 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import { ICurrentWeather } from '../../model/weather';
 import { days, weatherAsset } from '../../utils/constants';
 import '../../styles/sidebar.scss';
+import { TemperatureUnitType } from '../../App';
 
 interface Props {
   currentWeather?: ICurrentWeather;
+  temperatureUnit: TemperatureUnitType;
 }
 
-const Sidebar: FC<Props> = ({ currentWeather }) => {
+const Sidebar: FC<Props> = ({ currentWeather, temperatureUnit }) => {
   const updatedDate =
     currentWeather && new Date(currentWeather.location.localtime_epoch * 1000);
   const updatedDateText =
@@ -42,8 +44,14 @@ const Sidebar: FC<Props> = ({ currentWeather }) => {
 
       <div>
         <p className="sidebar__temperature">
-          {currentWeather?.current.temp_c}
-          <sup>ºC</sup>
+          {temperatureUnit === 'celsius' || temperatureUnit === ''
+            ? currentWeather?.current.temp_c
+            : currentWeather?.current.temp_f}
+          <sup>
+            {temperatureUnit === 'celsius' || temperatureUnit === ''
+              ? 'ºC'
+              : 'ºF'}
+          </sup>
         </p>
       </div>
 

@@ -1,50 +1,45 @@
-import { FC, useMemo } from 'react';
-import '../../styles/main.scss';
+import { FC, useState } from 'react';
 import { IWeatherForecast } from '../../model/weather';
-import WeatherForecastCard from './WeatherForecastCard';
-import UvIndexCard from './DailyWeatherDetailCard/UvIndexCard';
-import WindStatusCard from './DailyWeatherDetailCard/WindStatusCard';
+import '../../styles/main.scss';
+import DailyWeatherDetail from './DailyWeatherDetail';
+import Navbar from './Navbar';
+import WeatherForecastList from './WeatherForecastList';
+import { TemperatureUnitType } from '../../App';
 
 interface Props {
   weatherForecast?: IWeatherForecast;
+  onChangeTemperatureUnit(temperatureUnit: TemperatureUnitType): void;
+  temperatureUnit: TemperatureUnitType;
 }
 
-const MainSection: FC<Props> = ({ weatherForecast }) => {
-  const uvIndex = useMemo(() => {
-    return weatherForecast?.forecast.forecastday[0].day.uv || 0;
-  }, [weatherForecast?.forecast.forecastday]);
+export type ForecastType = 'today' | 'week';
+
+const MainSection: FC<Props> = ({
+  weatherForecast,
+  onChangeTemperatureUnit,
+  temperatureUnit,
+}) => {
+  const [forecastType, setForecastType] = useState<ForecastType>('today');
+
+  const handleChangeForecastType = (type: ForecastType) => {
+    setForecastType(type);
+  };
+
   return (
     <div className="main">
-      <div className="main__navbar">
-        <div className="main__navbar__forecast">
-          <p>Today</p>
-          <p>Week</p>
-        </div>
-        <div className="main__navbar__temperature">
-          <span className="main__navbar__temperature--circle">ºC</span>
-          <span className="main__navbar__temperature--circle">ºF</span>
-        </div>
-      </div>
+      <Navbar
+        onChangeForecastType={handleChangeForecastType}
+        forecastType={forecastType}
+        onChangeTemperatureUnit={onChangeTemperatureUnit}
+        temperatureUnit={temperatureUnit}
+      />
       <div className="main__content">
-        <div className="main__content__forecast">
-          {weatherForecast?.forecast.forecastday[0].hour.map(
-            (weather, index) => {
-              if (index % 3 === 0 || index > 21) {
-                return (
-                  <WeatherForecastCard
-                    type="today"
-                    weather={weather}
-                    key={index}
-                  />
-                );
-              }
-            },
-          )}
-        </div>
-        <div className="main__content__daily-detail-forecast">
-          <UvIndexCard uvIndex={uvIndex} />
-          <WindStatusCard />
-        </div>
+        <WeatherForecastList
+          weatherForecast={weatherForecast}
+          forecastType={forecastType}
+          temperatureUnit={temperatureUnit}
+        />
+        <DailyWeatherDetail weatherForecast={weatherForecast} />
       </div>
     </div>
   );

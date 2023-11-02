@@ -2,18 +2,19 @@
   display: flex;
   padding: 16px;
   flex-direction: column;
-  gap: 6px;
   align-items: center;
+  justify-content: space-between;
   width: 100px;
   border-radius: 10px;
   background-color: #fff;
 
-  &__weather-icon {
-    width: 60px;
-  }
-
   &__temp-range {
     display: flex;
     gap: 4px;
+    color: #a8a8a8;
+
+    &__max-temp {
+      color: black;
+    }
   }
 }

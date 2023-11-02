@@ -4,26 +4,31 @@ interface Props {
   value: number;
   changePerTime: number;
   time: number;
+  style?: React.CSSProperties;
 }
 
-const Counter: FC<Props> = ({ value, changePerTime, time }: Props) => {
+const Counter: FC<Props> = ({ value, changePerTime, time, style }: Props) => {
   const [result, setResult] = useState(0);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       setResult(prevState => {
-        if (result < value - changePerTime) {
+        if (result < value) {
           return prevState + changePerTime;
         }
-        return prevState;
+        return value;
       });
     }, time / (value / changePerTime));
 
     return () => clearInterval(intervalRef.current!);
   }, [changePerTime, result, time, value]);
 
-  return <h1>{result === Math.round(result) ? result : result.toFixed(2)}</h1>;
+  return (
+    <p style={style || { fontSize: '40px', fontWeight: 600 }}>
+      {result === Math.round(result) ? result : result.toFixed(2)}
+    </p>
+  );
 };
 
 export default Counter;
