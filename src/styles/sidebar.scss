@@ -11,24 +11,41 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
     font-size: 23px;
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      outline: none;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+
+      [data-tooltips]::after {
+        left: auto !important;
+        transform: none !important;
+        right: -20px !important;
+      }
+    }
   }
 
   &__temperature {
     font-size: 60px;
   }
 
-  &__current-time {
-    font-size: 18px;
-  }
-
   &__weather-state {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    width: 100%;
+
     &__icon {
       width: 100px;
     }
+
     &__description {
       font-size: 18px;
     }

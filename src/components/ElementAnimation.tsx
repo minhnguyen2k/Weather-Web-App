@@ -18,6 +18,7 @@ const ElementAnimation = ({
       <div className={isTargetOneOverlapped ? 'animation-common' : ''}>
         {targetOne}
       </div>
+
       <div className={isTargetTwoOverlapped ? 'animation-common' : ''}>
         {targetTwo}
       </div>

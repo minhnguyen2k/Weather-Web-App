@@ -1,5 +1,6 @@
 import { TemperatureUnitType } from '../../../App';
 import { ForecastType } from '../MainSection';
+import '../../../styles/index.scss';
 
 interface Props {
   onChangeForecastType(type: ForecastType): void;
@@ -44,7 +45,8 @@ const Navbar = ({
         </p>
       </div>
       <div className="main__navbar__temperature">
-        <span
+        <button
+          data-tooltips="Celsius"
           className={
             temperatureUnit === 'celsius' || temperatureUnit === ''
               ? 'main__navbar__temperature--circle main__navbar__temperature--circle--active'
@@ -55,8 +57,10 @@ const Navbar = ({
           }}
         >
           ºC
-        </span>
-        <span
+        </button>
+
+        <button
+          data-tooltips="Fahrenheit"
           className={
             temperatureUnit === 'fahrenheit'
               ? 'main__navbar__temperature--circle main__navbar__temperature--circle--active'
@@ -67,7 +71,7 @@ const Navbar = ({
           }}
         >
           ºF
-        </span>
+        </button>
       </div>
     </div>
   );

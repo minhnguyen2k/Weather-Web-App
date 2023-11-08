@@ -8,34 +8,33 @@ import VisibilityCard from './DailyWeatherDetailCard/VisibilityCard';
 import WindStatusCard from './DailyWeatherDetailCard/WindStatusCard';
 
 interface Props {
-  weatherForecast?: IWeatherForecast;
+  weatherForecast: IWeatherForecast;
 }
 
 const DailyWeatherDetail = memo(function DailyWeatherDetail({
   weatherForecast,
 }: Props) {
+  const weatherToday = weatherForecast.forecast.forecastday[0];
+
   return (
     <div className="main__content__daily-detail-forecast">
-      <UvIndexCard
-        uvIndex={weatherForecast?.forecast.forecastday[0].day.uv || 0}
-      />
+      <UvIndexCard uvIndex={weatherToday.day.uv} />
+
       <WindStatusCard
-        windSpeed={weatherForecast?.current.wind_mph || 0}
-        windDegree={weatherForecast?.current.wind_degree || 0}
+        windSpeed={weatherForecast.current.wind_mph}
+        windDegree={weatherForecast.current.wind_degree}
       />
+
       <SunCard
-        sunrise={weatherForecast?.forecast.forecastday[0].astro.sunrise || ''}
-        sunset={weatherForecast?.forecast.forecastday[0].astro.sunset || ''}
+        sunrise={weatherToday.astro.sunrise}
+        sunset={weatherToday.astro.sunset}
       />
-      <HumidityCard
-        humidity={weatherForecast?.forecast.forecastday[0].day.avghumidity || 0}
-      />
-      <VisibilityCard
-        visibility={weatherForecast?.forecast.forecastday[0].day.avgvis_km || 0}
-      />
-      <AirPressureCard
-        airPressure={weatherForecast?.current.pressure_mb || 0}
-      />
+
+      <HumidityCard humidity={weatherToday.day.avghumidity} />
+
+      <VisibilityCard visibility={weatherToday.day.avgvis_km} />
+
+      <AirPressureCard airPressure={weatherForecast.current.pressure_mb} />
     </div>
   );
 });

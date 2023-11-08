@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   value: number;
@@ -7,10 +7,11 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const Counter: FC<Props> = ({ value, changePerTime, time, style }: Props) => {
+const Counter = ({ value, changePerTime, time, style }: Props) => {
   const [result, setResult] = useState(0);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       setResult(prevState => {
@@ -25,7 +26,7 @@ const Counter: FC<Props> = ({ value, changePerTime, time, style }: Props) => {
   }, [changePerTime, result, time, value]);
 
   return (
-    <p style={style || { fontSize: '40px', fontWeight: 600 }}>
+    <p style={style || { fontSize: '50px' }}>
       {result === Math.round(result) ? result : result.toFixed(2)}
     </p>
   );

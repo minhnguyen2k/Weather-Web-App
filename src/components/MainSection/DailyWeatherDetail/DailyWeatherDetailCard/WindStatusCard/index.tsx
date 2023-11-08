@@ -16,6 +16,7 @@ const WindStatusCard = ({ windSpeed, windDegree }: Props) => {
           changePerTime={windSpeed / 100}
           time={1000}
         />
+
         <span className="wind-speed__unit">m/h</span>
       </div>
 
@@ -32,7 +33,7 @@ const WindStatusCard = ({ windSpeed, windDegree }: Props) => {
             value={windDegree}
             changePerTime={windDegree / 100}
             time={1000}
-            style={{ fontSize: '18px', fontWeight: 400 }}
+            style={{ fontSize: '16px', fontWeight: 400 }}
           />
 
           <span className="wind-direction__counter__unit">degrees</span>
