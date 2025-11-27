@@ -11,9 +11,6 @@ export const getCurrentWeather = async (
         q: `${lat},${lon}`,
         key: import.meta.env.VITE_WEATHER_API_KEY,
       },
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
     })
   ).data;
 };
