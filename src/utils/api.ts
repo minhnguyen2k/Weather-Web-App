@@ -6,7 +6,7 @@ export const getCurrentWeather = async (
   lon: number,
 ): Promise<ICurrentWeather> => {
   return (
-    await axios.get('http://api.weatherapi.com/v1/current.json', {
+    await axios.get('https://api.weatherapi.com/v1/current.json', {
       params: {
         q: `${lat},${lon}`,
         key: import.meta.env.VITE_WEATHER_API_KEY,
@@ -21,7 +21,7 @@ export const getWeatherForecast = async (
   days: number,
 ): Promise<IWeatherForecast> => {
   return (
-    await axios.get('http://api.weatherapi.com/v1/forecast.json', {
+    await axios.get('https://api.weatherapi.com/v1/forecast.json', {
       params: {
         q: `${lat},${lon}`,
         key: import.meta.env.VITE_WEATHER_API_KEY,
